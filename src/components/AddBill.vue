@@ -46,6 +46,7 @@ import {createBill,useLoadCompany} from '../index'
                     amount: '',
                     date: '',
                     outstandingAmount: '',
+                    index: '',
                 },
                 pass: 0,
             };
@@ -60,6 +61,14 @@ import {createBill,useLoadCompany} from '../index'
                 }
                 this.form.outstandingAmount = this.form.amount;
                 this.form.number = this.form.number.toUpperCase();
+                let index = parseInt(this.form.number.replace(/[A-Z]/gi, ''));
+                let isCharacterPresent = this.form.number.includes('A');
+                if(isCharacterPresent) {
+                    index = index * 2
+                }else{
+                    index = (index * 2) - 1;
+                }
+                this.form.index = index;
                 let year = String(this.form.date).slice(0,4);
                 year = parseInt(year,10)
                 let month = String(this.form.date).slice(5,7);

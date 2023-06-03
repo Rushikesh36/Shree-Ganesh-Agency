@@ -55,7 +55,7 @@ const config = {
 
   export const useLoadBill = async (year) => {
     let bills = [];
-    const snapshot = await billCollection.doc(year).collection(`Bills${year}`).orderBy('number','asc').get();  
+    const snapshot = await billCollection.doc(year).collection(`Bills${year}`).orderBy('index','asc').get();  
     snapshot.forEach(doc => {
       bills.push({...doc.data(),id: doc.id});
     });
@@ -66,7 +66,7 @@ const config = {
   export const useLoadBillbyName = async (name, year) => {
     let bills = [];
    
-    const snapshot = await billCollection.doc(year).collection(`Bills${year}`).orderBy('number','asc').where('name','==',name).get();
+    const snapshot = await billCollection.doc(year).collection(`Bills${year}`).orderBy('index','asc').where('name','==',name).get();
     snapshot.forEach(doc => {
       bills.push({...doc.data(),id: doc.id});
     });
